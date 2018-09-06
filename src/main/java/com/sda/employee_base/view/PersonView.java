@@ -1,9 +1,11 @@
 package com.sda.employee_base.view;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sda.employee_base.App;
 import com.sda.employee_base.controller.PersonController;
 import com.sda.employee_base.controller.PersonNewController;
 import com.sda.employee_base.model.Person;
+import com.sda.employee_base.model.PersonInString;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class PersonView {
@@ -21,16 +24,17 @@ public class PersonView {
 
     public PersonView(Stage stage) {
         this.stage = stage;
-        personList.add(new Person("John", "Kowalsky", "", "Liverpool", "", ""));
-        personList.add(new Person("Bob", "Marley", "", "Liverpool", "", ""));
-        personList.add(new Person("Mark", "Dawson", "", "London", "", ""));
-        personList.add(new Person("Patrick", "Dewey", "", "Manchester", "", ""));
-        personList.add(new Person("Paul", "Hevert", "", "London", "", ""));
-        personList.add(new Person("Sam", "Caus", "", "London", "", ""));
-        personList.add(new Person("Carol", "Thompson", "", "Manchester", "", ""));
-        personList.add(new Person("Susan", "Wright", "", "London", "", ""));
-        personList.add(new Person("Mariah", "Armstrong", "", "London", "", ""));
-        personList.add(new Person("Betty", "Bright", "", "London", "", ""));
+        readFile();
+//        personList.add(new Person("John", "Kowalsky", "", "Liverpool", "", ""));
+//        personList.add(new Person("Bob", "Marley", "", "Liverpool", "", ""));
+//        personList.add(new Person("Mark", "Dawson", "", "London", "", ""));
+//        personList.add(new Person("Patrick", "Dewey", "", "Manchester", "", ""));
+//        personList.add(new Person("Paul", "Hevert", "", "London", "", ""));
+//        personList.add(new Person("Sam", "Caus", "", "London", "", ""));
+//        personList.add(new Person("Carol", "Thompson", "", "Manchester", "", ""));
+//        personList.add(new Person("Susan", "Wright", "", "London", "", ""));
+//        personList.add(new Person("Mariah", "Armstrong", "", "London", "", ""));
+//        personList.add(new Person("Betty", "Bright", "", "London", "", ""));
 
     }
 
@@ -92,6 +96,31 @@ public class PersonView {
         personNewController.setPersonSaved(false);
         personNewController.setSelectIndex(index);
         personNewController.setPerson(person);
+    }
 
+    public void writeToFile() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File filename = new File("Person base.json");
+        try {
+            objectMapper.writeValue(filename, personList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFile() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File filename = new File("Person base.json");
+        try {
+            PersonInString[] personArray = objectMapper.readValue(filename, PersonInString[].class);
+
+            for (PersonInString p : personArray) {
+                System.out.println(p.getName());
+                personList.add(new Person(p.getName(), p.getLastname(), p.getStreet(), p.getCity(), p.getPostalCode(), p.getTelephone()));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

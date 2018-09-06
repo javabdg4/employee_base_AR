@@ -56,7 +56,7 @@ public class PersonNewController {
         } else {
             Alert alert = new Alert(
                     Alert.AlertType.CONFIRMATION,
-                    "Seve changed?",
+                    "Save changed?",
                     ButtonType.YES,
                     ButtonType.NO
             );
@@ -71,6 +71,7 @@ public class PersonNewController {
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
     }
+
 
     public void handleCancelButton(ActionEvent actionEvent) {
 

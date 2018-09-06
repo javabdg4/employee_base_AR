@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+
 public class PersonController {
 
     @FXML
@@ -72,7 +73,7 @@ public class PersonController {
     }
 
     public void handleSaveButton(ActionEvent actionEvent) {
-        System.out.println("save");
+        personView.writeToFile();
     }
 
     public void handleDeleteButton(ActionEvent actionEvent) {
@@ -90,4 +91,5 @@ public class PersonController {
         Person personToDelete = personTableView.getSelectionModel().getSelectedItem();
         personView.getPersonList().remove(personToDelete);
     }
+
 }
