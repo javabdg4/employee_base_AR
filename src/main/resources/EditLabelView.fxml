@@ -37,18 +37,18 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
-                        <TextField fx:id="name" GridPane.columnIndex="1"/>
+                        <TextField fx:id="textFieldName" GridPane.columnIndex="1"/>
                         <Label text="Name"/>
                         <Label text="Lastname" GridPane.rowIndex="1"/>
                         <Label text="Street" GridPane.rowIndex="2"/>
                         <Label text="City" GridPane.rowIndex="3"/>
                         <Label text="Postal code" GridPane.rowIndex="4"/>
                         <Label text="Telephone" GridPane.rowIndex="5"/>
-                        <TextField fx:id="lastname" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                        <TextField fx:id="street" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <TextField fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                        <TextField fx:id="postalCode" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                        <TextField fx:id="telephone" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                        <TextField fx:id="textFieldLastname" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <TextField fx:id="textFieldStreet" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <TextField fx:id="textFieldCity" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <TextField fx:id="textFieldPostalCode" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <TextField fx:id="textFieldTelephone" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                     </children>
                 </GridPane>
                 <Button fx:id="saveButton" onAction="#handleSaveButton" layoutX="336.0" layoutY="327.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0"

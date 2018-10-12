@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class PersonNewController {
@@ -23,22 +24,22 @@ public class PersonNewController {
     }
 
     @FXML
-    private TextField name;
+    private TextField textFieldName;
 
     @FXML
-    private TextField lastname;
+    private TextField textFieldLastname;
 
     @FXML
-    private TextField street;
+    private TextField textFieldStreet;
 
     @FXML
-    private TextField city;
+    private TextField textFieldCity;
 
     @FXML
-    private TextField postalCode;
+    private TextField textFieldPostalCode;
 
     @FXML
-    private TextField telephone;
+    private TextField textFieldTelephone;
 
     @FXML
     private Button closeButton;
@@ -48,30 +49,39 @@ public class PersonNewController {
 
     public void handleSaveButton(ActionEvent actionEvent) {
         if (isPersonSaved) {
-            Person person = new Person(name.getText(), lastname.getText(),
-                    street.getText(), city.getText(), postalCode.getText(), telephone.getText());
-
+            Person person = new Person(
+                    textFieldName.textProperty(),
+                    textFieldLastname.textProperty(),
+                    textFieldStreet.textProperty(),
+                    textFieldCity.textProperty(),
+                    textFieldPostalCode.textProperty(),
+                    textFieldTelephone.textProperty());
             personView.getPersonList().add(person);
-            System.out.println("Save person");
+            //System.out.println("Save person");
         } else {
             Alert alert = new Alert(
                     Alert.AlertType.CONFIRMATION,
-                    "Save changed?",
+                    "Save changes?",
                     ButtonType.YES,
                     ButtonType.NO
             );
+            ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/error.png"));
             alert.showAndWait();
             if (alert.getResult() == ButtonType.YES) {
-                System.out.println("saving changes...");
+                //System.out.println("saving changes...");
+
+                Person person = new Person(textFieldName.textProperty(),
+                        textFieldLastname.textProperty(),
+                        textFieldStreet.textProperty(),
+                        textFieldCity.textProperty(),
+                        textFieldPostalCode.textProperty(),
+                        textFieldTelephone.textProperty());
+                personView.getPersonList().set(this.index, person);
             }
-            Person person = new Person(name.getText(), lastname.getText(), street.getText(),
-                    city.getText(), postalCode.getText(), telephone.getText());
-            personView.getPersonList().set(this.index, person);
         }
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
     }
-
 
     public void handleCancelButton(ActionEvent actionEvent) {
 
@@ -84,12 +94,12 @@ public class PersonNewController {
     }
 
     public void setPerson(Person person) {
-        name.setText(person.getName());
-        lastname.setText(person.getLastname());
-        street.setText(person.getStreet());
-        city.setText(person.getCity());
-        postalCode.setText(person.getPostalCode());
-        telephone.setText(person.getTelephone());
+        textFieldName.textProperty().bindBidirectional(person.getNameProperty());
+        textFieldLastname.textProperty().bindBidirectional(person.getLastnameProperty());
+        textFieldStreet.textProperty().bindBidirectional(person.getStreetProperty());
+        textFieldCity.textProperty().bindBidirectional(person.getCityProperty());
+        textFieldPostalCode.textProperty().bindBidirectional(person.getPostalcodeProperty());
+        textFieldTelephone.textProperty().bindBidirectional(person.getTelephoneProperty());
     }
 
     public void setSelectIndex(int index) {

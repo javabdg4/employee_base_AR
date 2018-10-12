@@ -5,95 +5,71 @@ import javafx.beans.property.StringProperty;
 
 public class Person {
 
-    private StringProperty name;
-    private StringProperty lastname;
-    private StringProperty street;
-    private StringProperty city;
-    private StringProperty postalCode;
-    private StringProperty telephone;
+    private StringProperty nameProperty = new SimpleStringProperty(this, "nameProperty");
+    private StringProperty lastnameProperty = new SimpleStringProperty(this, "lastnameProperty");
+    private StringProperty streetProperty = new SimpleStringProperty(this, "streetProperty");
+    private StringProperty cityProperty = new SimpleStringProperty(this, "cityProperty");
+    private StringProperty postalcodeProperty = new SimpleStringProperty(this, "postalcodeProperty");
+    private StringProperty telephoneProperty = new SimpleStringProperty(this, "phoneProperty");
+
+
+    public Person(StringProperty nameProperty, StringProperty lastnameProperty, StringProperty streetProperty, StringProperty cityProperty, StringProperty postalcodeProperty, StringProperty telephoneProperty) {
+        this.nameProperty = nameProperty;
+        this.lastnameProperty = lastnameProperty;
+        this.streetProperty = streetProperty;
+        this.cityProperty = cityProperty;
+        this.postalcodeProperty = postalcodeProperty;
+        this.telephoneProperty = telephoneProperty;
+    }
 
     public Person() {
     }
 
-    public Person(String name, String lastname, String street,
-                  String city, String postalCode, String telephone) {
-        this.name = new SimpleStringProperty(name);
-        this.lastname = new SimpleStringProperty(lastname);
-        this.street = new SimpleStringProperty(street);
-        this.city = new SimpleStringProperty(city);
-        this.postalCode = new SimpleStringProperty(postalCode);
-        this.telephone = new SimpleStringProperty(telephone);
+    public StringProperty getNameProperty() {
+        return nameProperty;
     }
 
-    public String getName() {
-        return name.get();
+    public void setNameProperty(StringProperty nameProperty) {
+        this.nameProperty = nameProperty;
     }
 
-    public StringProperty nameProperty() {
-        return name;
+    public StringProperty getLastnameProperty() {
+        return lastnameProperty;
     }
 
-    public void setName(String name) {
-        this.name.set(name);
+    public void setLastnameProperty(StringProperty lastnameProperty) {
+        this.lastnameProperty = lastnameProperty;
     }
 
-    public String getLastname() {
-        return lastname.get();
+    public StringProperty getStreetProperty() {
+        return streetProperty;
     }
 
-    public StringProperty lastnameProperty() {
-        return lastname;
+    public void setStreetProperty(StringProperty streetProperty) {
+        this.streetProperty = streetProperty;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname.set(lastname);
+    public StringProperty getCityProperty() {
+        return cityProperty;
     }
 
-    public String getStreet() {
-        return street.get();
+    public void setCityProperty(StringProperty cityProperty) {
+        this.cityProperty = cityProperty;
     }
 
-    public StringProperty streetProperty() {
-        return street;
+    public StringProperty getPostalcodeProperty() {
+        return postalcodeProperty;
     }
 
-    public void setStreet(String street) {
-        this.street.set(street);
+    public void setPostalcodeProperty(StringProperty postalcodeProperty) {
+        this.postalcodeProperty = postalcodeProperty;
     }
 
-    public String getCity() {
-        return city.get();
+    public StringProperty getTelephoneProperty() {
+        return telephoneProperty;
     }
 
-    public StringProperty cityProperty() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city.set(city);
-    }
-
-    public String getPostalCode() {
-        return postalCode.get();
-    }
-
-    public StringProperty postalCodeProperty() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode.set(postalCode);
-    }
-
-    public String getTelephone() {
-        return telephone.get();
-    }
-
-    public StringProperty telephoneProperty() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone.set(telephone);
+    public void setTelephoneProperty(StringProperty telephoneProperty) {
+        this.telephoneProperty = telephoneProperty;
     }
 }

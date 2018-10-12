@@ -5,11 +5,11 @@ import com.sda.employee_base.App;
 import com.sda.employee_base.controller.PersonController;
 import com.sda.employee_base.controller.PersonNewController;
 import com.sda.employee_base.model.Person;
-import com.sda.employee_base.model.PersonInString;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -24,17 +24,6 @@ public class PersonView {
 
     public PersonView(Stage stage) {
         this.stage = stage;
-        readFile();
-//        personList.add(new Person("John", "Kowalsky", "", "Liverpool", "", ""));
-//        personList.add(new Person("Bob", "Marley", "", "Liverpool", "", ""));
-//        personList.add(new Person("Mark", "Dawson", "", "London", "", ""));
-//        personList.add(new Person("Patrick", "Dewey", "", "Manchester", "", ""));
-//        personList.add(new Person("Paul", "Hevert", "", "London", "", ""));
-//        personList.add(new Person("Sam", "Caus", "", "London", "", ""));
-//        personList.add(new Person("Carol", "Thompson", "", "Manchester", "", ""));
-//        personList.add(new Person("Susan", "Wright", "", "London", "", ""));
-//        personList.add(new Person("Mariah", "Armstrong", "", "London", "", ""));
-//        personList.add(new Person("Betty", "Bright", "", "London", "", ""));
 
     }
 
@@ -53,6 +42,7 @@ public class PersonView {
         }
 
         Stage newPersonStage = new Stage();
+        newPersonStage.getIcons().add(new Image(App.class.getResourceAsStream("/icon.png")));
         Scene newPersonScene = new Scene(newPersonView);
         newPersonStage.setScene(newPersonScene);
         newPersonStage.show();
@@ -69,6 +59,7 @@ public class PersonView {
             vBox = (VBox) loader.load();
             Scene scene = new Scene(vBox);
             stage.setScene(scene);
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("/icon2.png")));
             stage.show();
             PersonController personController = loader.getController();
             personController.setPersonView(this);
@@ -88,6 +79,7 @@ public class PersonView {
         }
 
         Stage newPersonStage = new Stage();
+        newPersonStage.getIcons().add(new Image(App.class.getResourceAsStream("/icon.png")));
         Scene newPersonScene = new Scene(newPersonView);
         newPersonStage.setScene(newPersonScene);
         newPersonStage.show();
@@ -101,6 +93,7 @@ public class PersonView {
     public void writeToFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File filename = new File("Person base.json");
+
         try {
             objectMapper.writeValue(filename, personList);
         } catch (IOException e) {
@@ -111,16 +104,25 @@ public class PersonView {
     public void readFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File filename = new File("Person base.json");
-        try {
-            PersonInString[] personArray = objectMapper.readValue(filename, PersonInString[].class);
+        if (filename != null) {
+            try {
+                personList = (ObservableList<Person>) objectMapper.readValue(filename, Person.class);
 
-            for (PersonInString p : personArray) {
-                System.out.println(p.getName());
-                personList.add(new Person(p.getName(), p.getLastname(), p.getStreet(), p.getCity(), p.getPostalCode(), p.getTelephone()));
+                for (Person p : personList) {
+                    personList.add(new Person(
+                            p.getNameProperty(),
+                            p.getLastnameProperty(),
+                            p.getStreetProperty(),
+                            p.getCityProperty(),
+                            p.getPostalcodeProperty(),
+                            p.getTelephoneProperty()));
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+           // ???
         }
     }
 }

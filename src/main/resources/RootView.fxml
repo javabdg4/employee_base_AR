@@ -18,9 +18,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:controller="com.sda.employee_base.controller.PersonController" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sda.employee_base.controller.PersonController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar prefHeight="25.0" prefWidth="614.0" VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -100,33 +100,33 @@
                               <Label text="City" GridPane.rowIndex="3" />
                               <Label text="Postal Code" GridPane.rowIndex="4" />
                               <Label text="Telephone" GridPane.rowIndex="5" />
-                              <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="1" />
-                              <Label fx:id="lastnameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id="streetLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label fx:id="cityLabel" text="Label"  GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label fx:id="postalCodeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label fx:id="telephoneLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label fx:id="nameLabel" GridPane.columnIndex="1" />
+                              <Label fx:id="lastnameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="streetLabel" prefHeight="17.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="cityLabel" prefHeight="17.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="postalCodeLabel" prefHeight="17.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label fx:id="telephoneLabel" prefHeight="17.0" prefWidth="195.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                            </children>
                            <effect>
                               <ColorAdjust brightness="-0.73" contrast="0.71" hue="0.17" saturation="0.44" />
                            </effect>
                         </GridPane>
-                        <Button onAction="#handleDeleteButton" layoutX="335.0" layoutY="308.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Delete">
+                        <Button layoutX="335.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="30.0" prefWidth="80.0" text="Delete">
                            <effect>
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button onAction="#handleSaveButton" layoutX="236.0" layoutY="308.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Save">
+                        <Button layoutX="236.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="30.0" prefWidth="80.0" text="Save">
                            <effect>
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button onAction="#handleEditButton" layoutX="130.0" layoutY="308.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Edit">
+                        <Button layoutX="130.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="30.0" prefWidth="80.0" text="Edit">
                            <effect>
                               <DropShadow />
                            </effect>
                         </Button>
-                        <Button onAction="#handleNewButton" layoutX="24.0" layoutY="308.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="New">
+                        <Button layoutX="24.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleNewButton" prefHeight="30.0" prefWidth="80.0" text="New">
                            <effect>
                               <DropShadow />
                            </effect>

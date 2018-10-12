@@ -5,6 +5,8 @@ import com.sda.employee_base.view.PersonView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 
 public class PersonController {
@@ -46,19 +48,21 @@ public class PersonController {
 
     @FXML
     public void initialize() {
-        nameColumn.setCellValueFactory(cell -> cell.getValue().nameProperty());
-        lastNameColumn.setCellValueFactory(cell -> cell.getValue().lastnameProperty());
+        nameColumn.setCellValueFactory(cell -> cell.getValue().getNameProperty());
+        lastNameColumn.setCellValueFactory(cell -> cell.getValue().getLastnameProperty());
         personTableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldField, newField) -> viewPersonInfoOnLabel(newField));
     }
 
     public void viewPersonInfoOnLabel(Person person) {
-        nameLabel.setText(person.getName());
-        lastnameLabel.setText(person.getLastname());
-        streetLabel.setText(person.getStreet());
-        cityLabel.setText(person.getCity());
-        postalCodeLabel.setText(person.getPostalCode());
-        telephoneLabel.setText(person.getTelephone());
+        if (person != null) {
+            nameLabel.textProperty().bind(person.getNameProperty());
+            lastnameLabel.textProperty().bind(person.getLastnameProperty());
+            streetLabel.textProperty().bind(person.getStreetProperty());
+            cityLabel.textProperty().bind(person.getCityProperty());
+            postalCodeLabel.textProperty().bind(person.getPostalcodeProperty());
+            telephoneLabel.textProperty().bind(person.getTelephoneProperty());
+        }
     }
 
     public void handleNewButton(ActionEvent actionEvent) {
@@ -84,9 +88,10 @@ public class PersonController {
                 ButtonType.YES,
                 ButtonType.NO
         );
+        ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/error.png"));
         alert.showAndWait();
         if (alert.getResult() == ButtonType.YES) {
-            System.out.println("Deleting...");
+            //System.out.println("Deleting...");
         }
         Person personToDelete = personTableView.getSelectionModel().getSelectedItem();
         personView.getPersonList().remove(personToDelete);
